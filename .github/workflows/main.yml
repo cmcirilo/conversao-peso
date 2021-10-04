@@ -9,10 +9,14 @@ on:
 
 jobs:
   CI:
-    runs-on: dotnet-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.0' # SDK Version to use; x will use the latest version of the 3.1 channel
+      - run: dotnet build ConversaoPeso.Web
       
       - name: Docker Login
         uses: docker/login-action@v1.10.0
